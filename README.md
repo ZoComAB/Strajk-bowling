@@ -38,7 +38,7 @@ Om inget annat gjorts upp, är du fri att välja språk och tekniker.
 
 ## Om projektet
 
-**Strajk bowling är en nyöppnad bowlinghall i centrala Bromölla. Ägaren K. Ägla gillar tekniska lösningar och har tillsammans med brorsonen Keso Ägla skissat ihop en kravspec för backendfunktionalitet.**
+**Strajk bowling är en nyöppnad bowlinghall i centrala Bromölla. Ägaren K. Ägla gillar tekniska lösningar och har tillsammans med brorsonen Keso Ägla [byggt en frontend](https://www.figma.com/file/67YvtKEq7iljjXqjGvJRMx/Strajk-1.0?node-id=0%3A1), och skissat ihop en kravspec för backendfunktionalitet. Ditt jobb är att bygga backenden.**
 
 ## Val av teknik
 
