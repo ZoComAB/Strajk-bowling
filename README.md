@@ -1,92 +1,103 @@
-# Strajk Bowling
+![poster](./poster.png)
 
+<section style="padding: 1rem; font-size: 1.4rem; background-color: #EC315A; color: #FFF4F1; border-radius: 4px; margin: 1rem 0;">
+Hej och välkommen till detta lilla kodtest som kommer ta dig ca 1 - 2h att genomföra. Syftet med testet är <em>flexa dina utvecklar-muskler</em> samt <em>förse oss med samtalsunderlag vid inbokad avstämning.</em> Visa vad du går för! 
+</section>
 
+# Frontend / Mobilapp
 
-## Getting started
+## Om projektet
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+**Strajk bowling är en nyöppnad bowlinghall i centrala Bromölla. Ägaren K. Ägla gillar tekniska lösningar och har tillsammans med brorsonen Keso Ägla [designat en mockup](https://www.figma.com/file/67YvtKEq7iljjXqjGvJRMx/Strajk-1.0?node-id=0%3A1).**
+**Herr Ägla är väldigt nöjd med designen och vill att appen ser ut och fungerar enligt angiven spec. Gränssnittet behöver endast vara anpassat efter mobila enheter.**
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+## Val av tekniker
 
-## Add your files
+Om inget annat gjorts upp, är du fri att välja språk och tekniker.
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+## Krav
 
+**Användaren ska i frontend kunna:**
+
+- Boka en bana för N antal personer
+- Boka N antal skor
+- Se en bekräftelse på sin bokning
+- Checka in när det är strike-dags
+
+| View Namn    | Funktionalitet                                                                                                                                                                                                                                                                                  |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Loading      | Kan visas vid inläsning av cachead sida. Optional.                                                                                                                                                                                                                                              |
+| Booking      | Användaren ska kunna boka _datum_ och _tid_ samt ange _antal spelare_. Vid val av spelare skall formulär för skobokning dyka upp. Väljs ex. 3 spelare, dyker 3 inputfält upp. Vid knapp på strike skickas _request_ iväg till servern. Finns bana ej tillgäng skall detta visas i gränssnittet. |
+| Confirmation | Vid ivägskickad request fås en bokning tillbaka inkl totalsumma ( 120kr / pers + 100kr / bana )och bokningsnummer.                                                                                                                                                                              |
+| Check In     | Denna vy visas ( och scannas ) vid inchecking vid bokat tillfället. Tänk på det som en biljett.                                                                                                                                                                                                 |
+| Meny         | Vid klick på _naviconen_ visas menyn på lämpligt sätt.                                                                                                                                                                                                                                          |
+
+![screens](./screens.png)
+
+# Backend
+
+## Om projektet
+
+**Strajk bowling är en nyöppnad bowlinghall i centrala Bromölla. Ägaren K. Ägla gillar tekniska lösningar och har tillsammans med brorsonen Keso Ägla skissat ihop en kravspec för backendfunktionalitet.**
+
+## Val av teknik
+
+Om inget annat gjorts upp, är du fri att välja språk, tekniker och databas.
+
+## Krav
+
+**Backend ska ha följande egenskaper:**
+
+- 6st bokningsbara banor tillgängliga mellan kl 9.00 och 22.00 varje dag.
+- Visa ett REST API ta emot och validera `booking request` från frontend.
+- Kika upp om banor finns tillgängliga önskad tid.
+- _Om tillgänglig_, räkna ut totalt _pris_, generera _id_ samt _active_-egenskap för att aktivera bokning.
+- _Om ej tillgänglig_, skicka 400-response och meddelandet "lane not available".
+- Ta emot och validera bokning vid en `checkin request`.
+- Spara banor samt bokningar i valfri databas.
+- Visa banornas bokningar.
+
+## API Spec
+
+| Resurs   | Metod | Beskrivning                                                         |
+| -------- | ----- | ------------------------------------------------------------------- |
+| /book    | POST  | Validera input samt vid tillgänglig bana och tid, skapa en bokning. |
+| /checkin | POST  | Validerar och checkar in.                                           |
+| /lanes   | GET   | Returnerar array av `Lane`                                          |
+
+## Booking Model
+
+**Request**
+
+```json
+{
+  "when": "2022-11-11T18:00",
+  "lanes": 1,
+  "people": 4,
+  "shoes": [38, 39, 44, 43]
+}
 ```
-cd existing_repo
-git remote add origin https://code.zocom.io/frontend/projects/strajk-bowling.git
-git branch -M main
-git push -uf origin main
+
+**Response**
+
+```json
+{
+  "when": "2022-11-11T18:00",
+  "lanes": 1,
+  "people": 4,
+  "shoes": [38, 39, 44, 43],
+  "price": 580, // räknas ut på serversidan
+  "id": "str7283472", // genereras på serversidan
+  "active": true // anges på serversidan. Ändras av vid validering av bokning ( check in)
+}
 ```
 
-## Integrate with your tools
+## Lane Model
 
-- [ ] [Set up project integrations](https://code.zocom.io/frontend/projects/strajk-bowling/-/settings/integrations)
-
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+```json
+{
+  "id": 1,
+  "title": "Lane 1",
+  "bookings": [Booking]
+}
+```
