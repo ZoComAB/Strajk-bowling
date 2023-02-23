@@ -7,7 +7,7 @@
     <title>Strajk Bowling</title>
     <link rel="stylesheet" href="scss/style.css">
 </head>
-<body data-view="book">
+<body data-state="booking">
     <aside class="navicon">
         <div></div>
         <div></div>
@@ -75,6 +75,7 @@
         document.querySelectorAll('a').forEach(a => {
             a.addEventListener('click', (e) => {
                 document.querySelector('body').setAttribute('data-state', e.target.innerText)
+                document.querySelector('nav').classList.toggle('show')
             })
         })
     </script>

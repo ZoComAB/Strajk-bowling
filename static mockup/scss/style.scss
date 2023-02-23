@@ -9,6 +9,25 @@ $border-radius: .25rem;
 
 
 /* NAV */
+
+[data-state="booking"] {
+    #booking {
+        display: block;
+    }
+    #confirm {
+        display: none;
+    }
+}
+
+[data-state="confirm"] {
+    #booking {
+        display: none;
+    }
+    #confirm {
+        display: block;
+    }
+}
+
 .navicon {
     position: fixed;
     z-index: 99999;
@@ -45,6 +64,34 @@ $border-radius: .25rem;
     }
 }
 
+
+nav {
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,.95);
+    transform: translateY(-100vh);
+    transition: .2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    a {
+        font-size: 3rem;
+        margin: 1rem;
+        opacity: .8;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    &.show {
+        transform: translateY(0);
+    }
+}
 
 /* TYPOGRAPHY */
 :root {
@@ -100,34 +147,6 @@ input {
 body {
     margin: 0;
     background-color: $background-color;
-}
-
-nav {
-    position: fixed;
-    z-index: 999;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0,0,0,.9);
-    transform: translateY(-100vh);
-    transition: .2s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    a {
-        font-size: 3rem;
-        margin: 1rem;
-        opacity: .8;
-
-        &:hover {
-            opacity: 1;
-        }
-    }
-
-    &.show {
-        transform: translateY(0);
-    }
 }
 
 section {
