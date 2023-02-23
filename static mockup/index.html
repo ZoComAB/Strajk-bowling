@@ -7,7 +7,7 @@
     <title>Strajk Bowling</title>
     <link rel="stylesheet" href="scss/style.css">
 </head>
-<body data-state="booking">
+<body data-state="confirm">
     <aside class="navicon">
         <div></div>
         <div></div>
@@ -50,19 +50,45 @@
                     <option value="3">3 lanes</option>
                 </select>
             </fieldset>
-            <p class="col-2"></p>
+            <br class="col-2" />
             <h2 class="col-2"><span></span>Shoes<span></span></h2>
             <fieldset class="col-2">
                 <label for="pers-1">Shoe size person 1</label>
                 <input type="number" max="50" id="pers-1">
             </fieldset>
-            <p class="col-2"></p>
+            <br class="col-2" />
             <button class="col-2">Striiiiiiike!</button>
         </main>
     </section>
 
     <section id="confirm">
-        <img src="img/strajk-logo.svg" alt="logo">
+        <header>
+            <img src="img/strajk-logo.svg" alt="logo">
+            <h1>See you soon!</h1>
+        </header>
+        <main>
+            <h2 class="col-2"><span></span>Booking details<span></span></h2>
+            <fieldset class="col-2">
+                <label for="date">When</label>
+                <p>3 Okt, 2023</p>
+            </fieldset>
+            <fieldset class="col-2">
+                <label for="date">Who</label>
+                <p>3 pers</p>
+            </fieldset>
+            <fieldset class="col-2">
+                <label for="date">Lanes</label>
+                <p>1 lane</p>
+            </fieldset>
+            <fieldset class="col-2">
+                <label for="date">Booking number</label>
+                <p>STR812744</p>
+            </fieldset>
+            <br class="col-2"/>
+            <footer class="col-2">
+                <p class="total">total</p><p class="price">460 sek</p>
+            </footer>
+            <button class="col-2">Sweet, lets go!</button>
     </section>
     <script>
         // Toggle menu
