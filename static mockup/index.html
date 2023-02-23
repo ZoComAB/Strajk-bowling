@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strajk Bowling</title>
+    <link rel="stylesheet" href="scss/style.css">
+</head>
+<body data-view="book">
+    <aside class="navicon">
+        <div></div>
+        <div></div>
+        <div></div>
+    </aside>
+    <nav>
+        <a href="#">booking</a>
+        <a href="#">confirm</a>
+    </nav>
+    <section id="booking">
+        <header>
+            <img src="img/strajk-logo.svg" alt="logo">
+            <h1>Booking</h1>
+        </header>
+        <main>
+            <h2 class="col-2"><span></span>When, What & Who<span></span></h2>
+            <fieldset class="col-1">
+                <label for="date">Date</label>
+                <input type="date" id="date">
+            </fieldset>
+            <fieldset class="col-1">
+                <label for="day">Time</label>
+                <input type="number" max="24" id="day">
+            </fieldset>
+            <fieldset class="col-2">
+                <label for="bowlers">Number of awesome bowlers</label>
+                <select name="bowlers" id="bowlers">
+                    <option value="1">1 pers</option>
+                    <option value="2">2 pers</option>
+                    <option value="3">3 pers</option>
+                    <option value="4">4 pers</option>
+                    <option value="5">5 pers</option>
+                </select>
+            </fieldset>
+            <fieldset class="col-2">
+                <label for="lanes">Number of lanes</label>
+                <select name="lanes" id="lanes">
+                    <option value="1">1 lane</option>
+                    <option value="2">2 lanes</option>
+                    <option value="3">3 lanes</option>
+                </select>
+            </fieldset>
+            <p class="col-2"></p>
+            <h2 class="col-2"><span></span>Shoes<span></span></h2>
+            <fieldset class="col-2">
+                <label for="pers-1">Shoe size person 1</label>
+                <input type="number" max="50" id="pers-1">
+            </fieldset>
+            <p class="col-2"></p>
+            <button class="col-2">Striiiiiiike!</button>
+        </main>
+    </section>
+
+    <section id="confirm">
+        <img src="img/strajk-logo.svg" alt="logo">
+    </section>
+    <script>
+        // Toggle menu
+        document.querySelector('.navicon')
+        .addEventListener('click', () => {
+            document.querySelector('nav').classList.toggle('show')
+        })
+
+        // Show view
+        document.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', (e) => {
+                document.querySelector('body').setAttribute('data-state', e.target.innerText)
+            })
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+.shoes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.shoes__heading::before, .shoes__heading::after {
+  content: "";
+  border: 1px solid #441D81;
+  display: inline-block;
+  width: 10.7rem;
+  margin-bottom: 6px;
+}
+
+.shoes__heading::before {
+  margin-right: 10px;
+}
+
+.shoes__heading::after {
+  margin-left: 10px;
+}
+
+.shoes__heading {
+  color: #441D81;
+  text-transform: uppercase;
+}
+
+.shoes__input {
+  margin-bottom: 1rem;
+}
+
+.shoes__button {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  background-color: #EC315A;
+  border: none;
+  border-radius: 999rem;
+  font-size: 28px;
+  font-weight: bold;
+  color: #fff;
+  padding: 0.5rem 1rem;
+}
+/*# sourceMappingURL=Shoes.css.map */
