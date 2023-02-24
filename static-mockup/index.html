@@ -7,7 +7,7 @@
     <title>Strajk Bowling</title>
     <link rel="stylesheet" href="scss/style.css">
 </head>
-<body data-state="confirm">
+<body data-state="booking">
     <aside class="navicon">
         <div></div>
         <div></div>
@@ -32,6 +32,7 @@
                 <label for="day">Time</label>
                 <input type="number" max="24" id="day">
             </fieldset>
+            <aside class="error-box col-2">No lane available at given date or time. Please try another date or time.</aside>
             <fieldset class="col-2">
                 <label for="bowlers">Number of awesome bowlers</label>
                 <select name="bowlers" id="bowlers">
