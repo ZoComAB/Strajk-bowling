@@ -3,8 +3,6 @@ import { RouterProvider } from 'react-router-dom';
 
 import router from './router';
 
-import Booking from './views/Booking';
-
 function App() {
 
   return (

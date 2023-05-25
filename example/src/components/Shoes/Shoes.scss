@@ -25,7 +25,8 @@
         text-transform: uppercase;
     }
 
-    &__input {
+    &__form {
+        display: flex;
         margin-bottom: 1rem;
     }
 
@@ -38,5 +39,10 @@
         font-weight: bold;
         color: #fff;
         padding: 0.5rem 1rem;
+    }
+
+    &__button--small {
+        font-size: 20px;
+        margin-left: auto;
     }
 }

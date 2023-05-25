@@ -1,12 +1,12 @@
-import './Booking.scss';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Booking.scss';
 
-import Top from '../components/Top/Top';
-import Navigation from '../components/Navigation/Navigation';
 import BookingInfo from "../components/BookingInfo/BookingInfo";
-import Shoes from "../components/Shoes/Shoes";
 import ErrorMessage from '../components/ErrorMessage/ErrorMessage';
+import Navigation from '../components/Navigation/Navigation';
+import Shoes from "../components/Shoes/Shoes";
+import Top from '../components/Top/Top';
 
 function Booking() {
     const [booking, setBooking] = useState({
@@ -14,13 +14,14 @@ function Booking() {
         time: '',
         lanes: 0,
         people: 0,
-        shoes: []
     });
+    const [shoes, setShoes] = useState([]);
     const [error, setError] = useState(false);
     const navigate = useNavigate();
 
     function updateBookingDetails(event) {
         const { name, value } = event.target;
+        setError(false);
 
         setBooking(prevState => ({
             ...prevState,
@@ -28,15 +29,31 @@ function Booking() {
         }));
     }
 
-    function updateShoes(event) {
-        const { value } = event.target;
+    function updateSize(event) {
+        const { value, name } = event.target;
+        setError(false);
 
         if (value.length === 2) {
-            setBooking(prevState => ({
-                ...prevState,
-                ['shoes']: [...prevState.shoes, value]
-            }));
+            setShoes(prevState => (
+                prevState.map(shoe =>
+                    shoe.id === name ? { ...shoe, size: value } : shoe 
+            )));
+            
         }
+    }
+
+    function addShoe(name) {
+        setError(false);
+    
+        setShoes([...shoes, { id: name, size: '' }]);
+    }
+
+    function removeShoe(name) {
+        setError(false);
+
+        setShoes(shoes.filter(shoe =>
+            shoe.id !== name
+        ));
     }
 
     async function sendBooking(bookingInfo) {
@@ -53,25 +70,25 @@ function Booking() {
     }
 
     function comparePeopleAndShoes() {
-        return parseInt(booking.people) === booking.shoes.length;
+        return (parseInt(booking.people) * parseInt(booking.lanes)) === shoes.length;
     }
 
     async function book() {
-        setError(!error);
-
         if (booking.when && booking.lanes 
-            && booking.time && comparePeopleAndShoes()) {
+            && booking.time && shoes.length > 0 
+            && comparePeopleAndShoes()
+            ) {
                 const bookingInfo = {
                     when: `${booking.when}T${booking.time}`,
                     lanes: booking.lanes,
                     people: booking.people,
-                    shoes: booking.shoes
+                    shoes: shoes.map(shoe => shoe.size)
                 }
         
                 const confirmation = await sendBooking(bookingInfo);
                 navigate('/confirmation', { state: { confirmationDetails: confirmation }});
         } else {
-            setError(!error);
+            setError(true);
         }
     }
 
@@ -80,7 +97,8 @@ function Booking() {
             <Navigation />
             <Top title="Booking" />
             <BookingInfo updateBookingDetails={ updateBookingDetails } />
-            <Shoes updateShoes={ updateShoes } />
+            <Shoes updateSize={ updateSize } addShoe={ addShoe }
+                    removeShoe={ removeShoe } shoes={ shoes } />
             <button className="button booking__button" onClick={ book }>strIIIIIike!</button>
             { error ? <ErrorMessage /> : '' }
         </section>
