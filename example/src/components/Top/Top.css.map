@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,IAAI,CAAC;EACD,UAAU,EAAE,MAAM;EAClB,aAAa,EAAE,IAAI;CAiBtB;;AAfI,AAAD,UAAO,CAAC;EACJ,MAAM,EAAE,MAAM;EACd,OAAO,EAAE,KAAK;CACjB;;AAEA,AAAD,WAAQ,CAAC;EACL,WAAW,EAAE,YAAY;EACzB,UAAU,EAAE,MAAM;EAClB,WAAW,EAAE,GAAG;EAChB,SAAS,EAAE,IAAI;EACf,WAAW,EAAE,IAAI;EACjB,cAAc,EAAE,MAAM;EACtB,KAAK,EClBC,OAAO;EDmBb,MAAM,EAAE,eAAe;CAC1B",
+    "sources": [
+        "Top.scss",
+        "../../scss/_variables.scss"
+    ],
+    "names": [],
+    "file": "Top.css"
+}

@@ -1,0 +1,303 @@
+/* variables */
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;600&display=swap");
+
+$primary-red: #ec315a;
+$background-color: #fff4f1;
+$primary-blue: #441d81;
+
+$border-radius: 0.25rem;
+
+/* NAV */
+
+[data-state="booking"] {
+  #booking {
+    display: block;
+  }
+  #confirm {
+    display: none;
+  }
+}
+
+[data-state="confirm"] {
+  #booking {
+    display: none;
+  }
+  #confirm {
+    display: block;
+  }
+}
+
+.navicon {
+  position: fixed;
+  z-index: 99999;
+  top: 0.5rem;
+  left: 0.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.5rem;
+  border-radius: $border-radius;
+  background-color: rgba($primary-red, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  transition: all 0.2s ease;
+
+  div {
+    height: 2px;
+    width: 100%;
+    border-radius: 99rem;
+    background-color: $primary-red;
+
+    &:nth-child(2) {
+      width: 80%;
+    }
+
+    &:nth-child(3) {
+      width: 40%;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgba($primary-red, 0.4);
+  }
+}
+
+nav {
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.95);
+  transform: translateY(-100vh);
+  transition: 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  a {
+    font-size: 3rem;
+    margin: 1rem;
+    opacity: 0.8;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &.show {
+    transform: translateY(0);
+  }
+}
+
+/* TYPOGRAPHY */
+
+:root {
+  font-family: "Work Sans", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+a {
+  font-family: "Bebas Neue", cursive;
+  color: $primary-red;
+  text-decoration: none;
+}
+
+h1,
+h2 {
+  font-family: "Bebas Neue", cursive;
+  color: $primary-red;
+  font-size: 4rem;
+  margin: 0;
+  padding: 0;
+  letter-spacing: 0.1rem;
+}
+
+h2 {
+  color: $primary-blue;
+  font-size: 1.4rem;
+  display: flex;
+  justify-items: center;
+  gap: 0.5rem;
+
+  span {
+    height: 2px;
+    background-color: $primary-blue;
+    flex: 1;
+    align-self: center;
+  }
+}
+
+input {
+  font-family: "Work Sans", sans-serif;
+}
+
+/* LAYOUT */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: $background-color;
+}
+
+section {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  z-index: 1;
+
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+
+    img {
+      max-width: 5rem;
+    }
+  }
+
+  main {
+    max-width: 30rem;
+    margin: 0 auto;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+
+    .col-1 {
+      grid-column: auto / span 1;
+    }
+
+    .col-2 {
+      grid-column: auto / span 2;
+    }
+  }
+}
+
+footer {
+  border: 1px solid $primary-red;
+  border-radius: $border-radius;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  display: flex;
+  justify-content: space-between;
+  color: $primary-red;
+
+  p {
+    font-size: 1.6rem;
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: auto;
+
+    &.total {
+      font-weight: 800;
+    }
+  }
+}
+
+/* FORM ELEMENTS */
+
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  label {
+    font-size: 0.8rem;
+    margin-left: 1rem;
+    text-transform: uppercase;
+    align-self: flex-start;
+    transform: translateY(0.6rem);
+    padding: 0 0.25rem;
+    color: $primary-blue;
+    background-color: $background-color;
+  }
+
+  &.error {
+    label {
+      color: $primary-red;
+    }
+
+    input {
+      border-color: $primary-red;
+    }
+  }
+}
+
+input,
+select,
+p {
+  appearance: none;
+  background: none;
+  width: 100%;
+  margin: 0;
+  border: 1px solid $primary-blue;
+  border-radius: $border-radius;
+  padding: 0.75rem 0.5rem;
+  font-size: 1.3rem;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+button {
+  appearance: none;
+  border: none;
+  display: flex;
+  border-radius: $border-radius;
+  background-color: $primary-red;
+  color: $background-color;
+  padding: 1rem;
+  text-transform: uppercase;
+  font-size: 1.8rem;
+  font-weight: 600;
+  justify-content: center;
+  transition: all 0.2s ease;
+
+  &:hover {
+    cursor: pointer;
+    filter: brightness(0.9);
+  }
+}
+
+/* ERROR */
+
+.error-box {
+  margin-top: 0.5rem;
+  background-color: $primary-red;
+  border-radius: $border-radius;
+  color: $background-color;
+  padding: 0.5rem;
+  position: relative;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
+    border-bottom-color: $primary-red;
+    border-top: 0;
+    margin-left: -8px;
+    margin-top: -8px;
+  }
+}

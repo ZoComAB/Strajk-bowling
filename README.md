@@ -33,6 +33,8 @@ Du jobbar direkt i detta repo, men jobba gärna enligt [gitflow](https://www.atl
 | Confirmation | Vid ivägskickad request fås en bokning tillbaka inkl totalsumma ( 120kr / pers + 100kr / bana )och bokningsnummer.                                                                                                                     |
 | Meny         | Vid klick på _naviconen_ visas menyn på lämpligt sätt.                                                                                                                                                                                 |
 
+I repot finns även en _statisk mockup_ i vanilla HTML & (S)CSS som du får använda så lite eller mycket du vill när du bygger en dynamisk webbApp.
+
 ![screens](./screens.png)
 
 ## Backend API
